@@ -34,10 +34,12 @@ def show_kpi_dashboard():
         # Display KPI Table
         st.write("### KPI Summary Table")
         st.dataframe(data)
+        
+        data_filtered = data[data["year"].between(2021, 2024)]
 
         # Create a Profit Margin Trend Chart
         st.write("### Profit Margin Over Time")
-        fig = px.line(data, x="year", y="profit_margin", color="ticker", 
+        fig = px.line(data_filtered, x="year", y="profit_margin", color="ticker", 
                       title="Profit Margin Trends", markers=True)
         st.plotly_chart(fig, use_container_width=True)
 

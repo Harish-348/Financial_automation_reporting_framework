@@ -15,14 +15,14 @@ def show_data_marts():
 
         # Line chart for profit margin
         fig_profit_margin = px.line(
-            profitability_data, x="year", y="profit_margin", color="ticker",
+            profitability_data[profitability_data['year'].between(2021, 2024)], x="year", y="profit_margin", color="ticker",
             title="Profit Margin Over Time", markers=True
         )
         st.plotly_chart(fig_profit_margin, use_container_width=True)
 
         # Bar chart for return on assets
         fig_return_on_assets = px.bar(
-            profitability_data, x="year", y="return_on_assets", color="ticker",
+            profitability_data[profitability_data['year'].between(2021, 2024)], x="year", y="return_on_assets", color="ticker",
             title="Return on Assets Over Time", barmode="group"
         )
         st.plotly_chart(fig_return_on_assets, use_container_width=True)
@@ -48,7 +48,7 @@ def show_data_marts():
 
         # Bar chart for total trading volume
         fig_trading_volume = px.bar(
-            market_data, x="year", y="total_trading_volume", color="ticker",
+            market_data[market_data['year'].between(2024, 2025)], x="year", y="total_trading_volume", color="ticker",
             title="Total Trading Volume Over Time", barmode="stack"
         )
         st.plotly_chart(fig_trading_volume, use_container_width=True)
