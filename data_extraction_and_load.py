@@ -2,6 +2,11 @@ import yfinance as yf
 import pandas as pd
 import mysql.connector
 from sqlalchemy import create_engine
+import os
+from dotenv import load_dotenv
+# import os
+
+load_dotenv()
 
 # List of companies
 COMPANIES = ["AAPL", "MSFT", "GOOGL"]
@@ -79,11 +84,18 @@ print("dim_financial_metrics:", dim_financial_metrics_df.head(), "\n")
 # Pushing data to MySQL
 
 # MySQL connection details
+
+# print(os.getenv("user"))
+host=os.getenv("host")
+user=os.getenv("user")
+password=os.getenv("password")
+database=os.getenv("database")
+
 DB_CONFIG = {
-    "host": "localhost",
-    "user": "root",
-    "password": "root",
-    "database": "financial_db"
+    "host": host,
+    "user": user,
+    "password": password,
+    "database": database
 }
 
 # Create a database connection

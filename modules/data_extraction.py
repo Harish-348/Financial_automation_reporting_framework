@@ -3,13 +3,23 @@ import yfinance as yf
 import pandas as pd
 from sqlalchemy import create_engine
 import streamlit as st
+import os
+from dotenv import load_dotenv
+# import os
 
-# Database Configuration
+load_dotenv()
+
+
+host=os.getenv("host")
+user=os.getenv("user")
+password=os.getenv("password")
+database=os.getenv("database")
+
 DB_CONFIG = {
-    "host": "localhost",
-    "user": "root",
-    "password": "root",
-    "database": "financial_db"
+    "host": host,
+    "user": user,
+    "password": password,
+    "database": database
 }
 engine = create_engine(f"mysql+mysqlconnector://{DB_CONFIG['user']}:{DB_CONFIG['password']}@{DB_CONFIG['host']}/{DB_CONFIG['database']}")
 
